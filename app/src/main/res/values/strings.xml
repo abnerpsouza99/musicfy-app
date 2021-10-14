@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MusicFy</string>
+    <string name="search_label">Busque uma música</string>
+</resources>
