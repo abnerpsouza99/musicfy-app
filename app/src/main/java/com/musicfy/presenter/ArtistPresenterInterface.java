@@ -1,13 +1,12 @@
-package com.musicfy.model.presenter;
+package com.musicfy.presenter;
 
 import android.content.Context;
 
-import com.musicfy.model.Artist;
-
-import java.util.List;
+import androidx.recyclerview.widget.RecyclerView;
 
 public interface ArtistPresenterInterface {
     interface view {
+        public void buildRecycler(RecyclerView.Adapter adapter);
         Context getContext();
     }
 
