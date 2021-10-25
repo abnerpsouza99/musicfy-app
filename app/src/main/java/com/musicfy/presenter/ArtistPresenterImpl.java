@@ -8,6 +8,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.musicfy.model.Artist;
+import com.musicfy.model.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,8 +21,7 @@ public class ArtistPresenterImpl implements ArtistPresenterInterface.presenter, 
 
     private List<Artist> artists = new ArrayList<Artist>();
     private ArtistPresenterInterface.view activity;
-    static final private String apiKey = "73221755SpueZZEnWOcKdYPAdWGEAYpBv4tRbnNkYoFZQX4a0a7Km7uC";
-    static final private String baseUrl = "https://api.happi.dev/v1/music/artists";
+    private Utils utils = new Utils();
 
     public ArtistPresenterImpl(ArtistPresenterInterface.view activity){
         this.activity = activity;
@@ -31,7 +31,7 @@ public class ArtistPresenterImpl implements ArtistPresenterInterface.presenter, 
     public void getAllArtistsByPage(int page){
         RequestQueue queue = Volley.newRequestQueue(activity.getContext());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
-                baseUrl + "?page=" + page + "&apikey=" + apiKey,
+                utils.getBaseUrl() + "/artists?page=" + page + "&apikey=" + utils.getApiKey(),
                 null,
                 new Response.Listener<JSONObject>(){
                     @Override
@@ -46,8 +46,9 @@ public class ArtistPresenterImpl implements ArtistPresenterInterface.presenter, 
     @Override
     public void getArtistById(int id) {
         RequestQueue queue = Volley.newRequestQueue(activity.getContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
-                baseUrl + "/?id_artist=" + id + "&apikey=" + apiKey,
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                utils.getBaseUrl() + "/artists/?id_artist=" + id + "&apikey=" + utils.getApiKey(),
                 null,
                 new Response.Listener<JSONObject>(){
                     @Override
