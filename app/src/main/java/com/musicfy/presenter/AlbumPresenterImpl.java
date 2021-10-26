@@ -66,7 +66,7 @@ public class AlbumPresenterImpl implements AlbumPresenterInterface.presenter, Re
         albums.clear();
         try{
             JSONObject result = response.getJSONObject("result");
-            JSONArray resultAlbums = response.getJSONArray("albums");
+            JSONArray resultAlbums = result.getJSONArray("albums");
             for (int i = 0; i < resultAlbums.length(); i++){
                 albums.add(new Album(resultAlbums.getJSONObject(i)));
             }
