@@ -1,8 +1,6 @@
 package com.musicfy.model;
 
 import android.os.Build;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
@@ -18,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Track implements Parcelable {
+public class Track {
 
     private int id;
     private String trackName;
@@ -29,30 +27,6 @@ public class Track implements Parcelable {
     private boolean hasLyrics;
     private String apiTrack;
     private String apiLyrics;
-
-    protected Track(Parcel in) {
-        id = in.readInt();
-        trackName = in.readString();
-        artist = in.readString();
-        album = in.readString();
-        bpm = in.readInt();
-        lang = in.readString();
-        hasLyrics = in.readByte() != 0;
-        apiTrack = in.readString();
-        apiLyrics = in.readString();
-    }
-
-    public static final Creator<Track> CREATOR = new Creator<Track>() {
-        @Override
-        public Track createFromParcel(Parcel in) {
-            return new Track(in);
-        }
-
-        @Override
-        public Track[] newArray(int size) {
-            return new Track[size];
-        }
-    };
 
     @Override
     public String toString() {
@@ -86,22 +60,4 @@ public class Track implements Parcelable {
         }
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.Q)
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.trackName);
-        dest.writeString(this.artist);
-        dest.writeString(this.album);
-        dest.writeInt(this.bpm);
-        dest.writeString(this.lang);
-        dest.writeBoolean(this.hasLyrics);
-        dest.writeString(this.apiTrack);
-        dest.writeString(this.apiLyrics);
-    }
 }
