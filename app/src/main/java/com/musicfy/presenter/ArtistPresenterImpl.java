@@ -19,6 +19,7 @@ import java.util.List;
 public class ArtistPresenterImpl implements ArtistPresenterInterface.presenter, Response.ErrorListener{
 
     private List<Artist> artists = new ArrayList<Artist>();
+    private Artist singleArtist;
     private ArtistPresenterInterface.view activity;
     private Utils utils = new Utils();
 

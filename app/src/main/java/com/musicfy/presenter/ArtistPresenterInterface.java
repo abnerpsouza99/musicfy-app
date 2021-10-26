@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public interface ArtistPresenterInterface {
     interface view {
-        public void buildRecycler(RecyclerView.Adapter adapter);
+        void buildRecycler(RecyclerView.Adapter adapter);
         Context getContext();
     }
 
