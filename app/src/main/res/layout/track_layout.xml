@@ -8,9 +8,9 @@
     android:background="@drawable/rounded_edit_text">
 
     <TextView
-        android:id="@+id/tvIdTrack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvTrackName"
+        android:layout_width="85dp"
+        android:layout_height="29dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
         android:textColor="@color/design_default_color_on_primary"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvAlbumTrack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -32,6 +32,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.331"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvIdTrack"
+        app:layout_constraintTop_toBottomOf="@+id/tvTrackName"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
