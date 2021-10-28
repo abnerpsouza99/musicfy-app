@@ -1,11 +1,14 @@
 package com.musicfy.presenter;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.musicfy.adapter.TrackAdapter;
 import com.musicfy.model.Track;
 import com.musicfy.model.utils.Utils;
 
@@ -60,7 +63,7 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
     @Override
     public void searchTrack() {
         // Valores fixos por enquanto para teste
-        String query = "";
+        String query = "nirvana";
         int limit = 10;
         boolean lyrics = true;
         String type = "track";
@@ -98,6 +101,8 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
                 Track track = new Track(resultTracks.getJSONObject(i));
                 tracks.add(track);
             }
+            RecyclerView.Adapter adapter = new TrackAdapter(tracks);
+            activity.buildRecycler(adapter);
         }catch (JSONException exception){
             exception.printStackTrace();
         }
@@ -111,6 +116,8 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
                 Track track = new Track(result.getJSONObject(i));
                 tracks.add(track);
             }
+            RecyclerView.Adapter adapter = new TrackAdapter(tracks);
+            activity.buildRecycler(adapter);
         }catch (JSONException exception){
             exception.printStackTrace();
         }
