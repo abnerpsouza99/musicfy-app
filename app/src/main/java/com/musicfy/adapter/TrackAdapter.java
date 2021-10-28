@@ -40,12 +40,12 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Track track = dados.get(position);
-        TextView tv = holder.view.findViewById(R.id.tvIdTrack);
-        tv.setText(""+track.toString());
-
-
+        TextView tv = holder.view.findViewById(R.id.tvTrackName);
+        System.out.println(track.toString());
+        tv.setText(track.getTrackName());
+        tv = holder.view.findViewById(R.id.tvAlbumTrack);
+        tv.setText(track.getAlbum());
     }
 
     @Override
