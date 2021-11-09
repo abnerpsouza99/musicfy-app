@@ -3,6 +3,7 @@ package com.musicfy.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.musicfy.R;
 import com.musicfy.model.Track;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> {
 
-    private List<Track> dados;
+    private List<Track> data;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View view;
@@ -26,7 +28,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         }
     }
 
-    public TrackAdapter(List<Track> tracks) { this.dados = tracks; }
+    public TrackAdapter(List<Track> tracks) { this.data = tracks; }
 
 
     @NonNull
@@ -40,17 +42,19 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Track track = dados.get(position);
+        Track track = data.get(position);
         TextView tv = holder.view.findViewById(R.id.tvTrackName);
         System.out.println(track.toString());
         tv.setText(track.getTrackName());
         tv = holder.view.findViewById(R.id.tvAlbumTrack);
         tv.setText(track.getAlbum());
+        ImageView imageView = holder.view.findViewById(R.id.trackImgView);
+        Picasso.get().load(track.getCover()).into(imageView);
     }
 
     @Override
     public int getItemCount() {
-        return dados.size();
+        return data.size();
     }
 
 }
