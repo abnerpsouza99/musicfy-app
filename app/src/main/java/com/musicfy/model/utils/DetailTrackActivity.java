@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.musicfy.R;
 import com.musicfy.model.Track;
 
-public class DetalheTrackActivity extends AppCompatActivity {
+public class DetailTrackActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate (Bundle savedInstaceState){
