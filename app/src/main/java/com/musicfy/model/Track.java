@@ -27,6 +27,15 @@ public class Track implements Parcelable {
     private boolean hasLyrics;
     private String apiTrack;
     private String apiLyrics;
+    private String cover;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public int getId() {
         return id;
@@ -110,6 +119,7 @@ public class Track implements Parcelable {
         hasLyrics = in.readByte() != 0;
         apiTrack = in.readString();
         apiLyrics = in.readString();
+        cover = in.readString();
     }
 
     public static final Creator<Track> CREATOR = new Creator<Track>() {
@@ -136,6 +146,7 @@ public class Track implements Parcelable {
                 ", hasLyrics=" + hasLyrics +
                 ", apiTrack='" + apiTrack + '\'' +
                 ", apiLyrics='" + apiLyrics + '\'' +
+                ", cover='" + cover + '\'' +
                 '}';
     }
 
@@ -151,6 +162,7 @@ public class Track implements Parcelable {
             this.hasLyrics = result.has("haslyrics") ? result.getBoolean("haslyrics") : result.getBoolean("haslyrics");
             this.apiTrack = result.has("api_track") ? result.getString("api_track") : "";
             this.apiLyrics = result.has("api_lyrics") ? result.getString("api_lyrics") : "";
+            this.cover = result.has("cover") ? result.getString("cover") : "";
         }catch (JSONException exception){
             exception.printStackTrace();
         }
@@ -173,5 +185,6 @@ public class Track implements Parcelable {
         dest.writeBoolean(this.hasLyrics);
         dest.writeString(this.apiTrack);
         dest.writeString(this.apiLyrics);
+        dest.writeString(this.cover);
     }
 }
