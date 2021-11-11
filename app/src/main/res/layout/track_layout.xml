@@ -21,6 +21,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:cardBackgroundColor="#17FFFFFF"
             app:cardCornerRadius="15dp">
 
             <ImageView
@@ -54,10 +55,11 @@
 
                 <TextView
                     android:id="@+id/tvTrackName"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="8dp"
+                    android:paddingEnd="32dp"
                     android:text="TextView"
                     android:textAlignment="textStart"
                     android:textColor="@color/design_default_color_on_primary"
@@ -66,8 +68,9 @@
 
                 <TextView
                     android:id="@+id/tvAlbumTrack"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingEnd="32dp"
                     android:text="TextView"
                     android:textAlignment="textStart"
                     android:textColor="@color/design_default_color_on_primary"
