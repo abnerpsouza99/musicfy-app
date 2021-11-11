@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
     android:layout_marginStart="24dp"
     android:layout_marginEnd="24dp"
-    android:background="@drawable/rounded_edit_text">
+    android:layout_marginBottom="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,62 +19,53 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:cardBackgroundColor="#17FFFFFF"
-            app:cardCornerRadius="15dp">
-
-            <ImageView
-                android:id="@+id/trackImgView"
-                android:layout_width="88dp"
-                android:layout_height="93dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="false"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="288dp"
-                android:layout_marginBottom="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvAlbumTrack"
-                app:layout_constraintHorizontal_bias="0.148"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.444"
-                tools:srcCompat="@tools:sample/avatars" />
+            app:cardCornerRadius="8dp"
+            app:contentPadding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="119dp"
-                android:gravity="start"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvTrackName"
+                <ImageView
+                    android:id="@+id/trackImgView"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvAlbumTrack"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="8dp"
-                    android:paddingEnd="32dp"
-                    android:text="TextView"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/design_default_color_on_primary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="16dp"
+                    android:gravity="start"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvAlbumTrack"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="32dp"
-                    android:text="TextView"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/design_default_color_on_primary"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tvTrackName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="TextView"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/design_default_color_on_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAlbumTrack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/design_default_color_on_primary"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
