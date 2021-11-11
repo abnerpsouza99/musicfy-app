@@ -34,7 +34,7 @@
                     android:id="@+id/trackImgView"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
-                    app:layout_constraintEnd_toStartOf="@+id/tvAlbumTrack"
+                    app:layout_constraintEnd_toStartOf="@+id/tvArtistName"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <LinearLayout
@@ -56,7 +56,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvAlbumTrack"
+                        android:id="@+id/tvArtistName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TextView"
