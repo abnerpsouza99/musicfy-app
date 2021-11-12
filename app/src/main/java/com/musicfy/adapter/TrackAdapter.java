@@ -46,8 +46,8 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         TextView tv = holder.view.findViewById(R.id.tvTrackName);
         System.out.println(track.toString());
         tv.setText(track.getTrackName());
-        tv = holder.view.findViewById(R.id.tvAlbumTrack);
-        tv.setText(track.getAlbum());
+        tv = holder.view.findViewById(R.id.tvArtistName);
+        tv.setText(track.getArtist());
         ImageView imageView = holder.view.findViewById(R.id.trackImgView);
         Picasso.get().load(track.getCover()).into(imageView);
     }
