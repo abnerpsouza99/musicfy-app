@@ -1,5 +1,7 @@
 package com.musicfy.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.musicfy.InnerActivity;
 import com.musicfy.R;
 import com.musicfy.model.Track;
 import com.squareup.picasso.Picasso;
@@ -18,6 +22,7 @@ import java.util.List;
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> {
 
     private List<Track> data;
+    private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View view;
@@ -28,7 +33,10 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         }
     }
 
-    public TrackAdapter(List<Track> tracks) { this.data = tracks; }
+    public TrackAdapter(List<Track> tracks, Context context) {
+        this.data = tracks;
+        this.context = context;
+    }
 
 
     @NonNull
@@ -50,6 +58,17 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         tv.setText(track.getArtist());
         ImageView imageView = holder.view.findViewById(R.id.trackImgView);
         Picasso.get().load(track.getCover()).into(imageView);
+
+        CardView cv = holder.view.findViewById(R.id.cardView);
+        cv.setTag(track);
+        cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, InnerActivity.class);
+                intent.putExtra("track", (Track) v.getTag());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
