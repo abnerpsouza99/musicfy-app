@@ -1,10 +1,11 @@
 package com.musicfy;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.musicfy.model.Track;
 
 public class InnerActivity extends AppCompatActivity {
 
@@ -13,6 +14,10 @@ public class InnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inner);
 
-        ActionBar actionBar = getSupportActionBar();
+        Track track = getIntent().getParcelableExtra("track");
+        TextView textView = findViewById(R.id.musicTitle);
+        textView.setText(track.getTrackName());
+        textView = findViewById(R.id.artistNameTrack);
+        textView.setText(track.getArtist());
     }
 }
