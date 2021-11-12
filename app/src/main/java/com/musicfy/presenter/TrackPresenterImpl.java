@@ -101,7 +101,7 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
                 Track track = new Track(resultTracks.getJSONObject(i));
                 tracks.add(track);
             }
-            RecyclerView.Adapter adapter = new TrackAdapter(tracks);
+            RecyclerView.Adapter adapter = new TrackAdapter(tracks, activity.getContext());
             activity.buildRecycler(adapter);
         }catch (JSONException exception){
             exception.printStackTrace();
@@ -116,7 +116,7 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
                 Track track = new Track(result.getJSONObject(i));
                 tracks.add(track);
             }
-            RecyclerView.Adapter adapter = new TrackAdapter(tracks);
+            RecyclerView.Adapter adapter = new TrackAdapter(tracks, activity.getContext());
             activity.buildRecycler(adapter);
         }catch (JSONException exception){
             exception.printStackTrace();
