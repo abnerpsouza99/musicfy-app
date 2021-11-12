@@ -8,7 +8,7 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/musicTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/musicTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHome"

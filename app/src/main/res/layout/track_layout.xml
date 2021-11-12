@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="#17FFFFFF"
@@ -47,7 +48,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="251dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="119dp"
                 android:gravity="start"
