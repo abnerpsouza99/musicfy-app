@@ -13,6 +13,6 @@ public interface TrackPresenterInterface {
     interface presenter {
         void getTrack(int idArtist, int idAlbum, int idTrack);
         void getAllTracksFromAAlbum(int idArtist, int idAlbum);
-        void searchTrack();
+        void searchTrack(String inputText);
     }
 }

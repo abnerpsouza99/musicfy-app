@@ -61,7 +61,7 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
     }
 
     @Override
-    public void searchTrack() {
+    public void searchTrack(String inputText) {
         // Valores fixos por enquanto para teste
         String query = "nirvana";
         int limit = 10;
@@ -71,7 +71,7 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
         RequestQueue queue = Volley.newRequestQueue(activity.getContext());
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                utils.getBaseUrl() + "?q=" + query + "&limit=" + limit + "&apikey=" + utils.getApiKey() + "&type=" + type + "&lyrics=" + lyrics,
+                utils.getBaseUrl() + "?q=" + inputText + "&limit=" + limit + "&apikey=" + utils.getApiKey() + "&type=" + type + "&lyrics=" + lyrics,
                 null,
                 new Response.Listener<JSONObject>(){
                     @Override
