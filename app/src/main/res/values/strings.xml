@@ -2,4 +2,7 @@
     <string name="app_name">MusicFy</string>
     <string name="search_label">Busque uma música</string>
     <string name="latest_tracks">Últimas Músicas</string>
+    <string name="favorite_text">Meus favoritos</string>
+    <string name="favorite_title">Favoritos</string>
+    <string name="home_title">Início</string>
 </resources>

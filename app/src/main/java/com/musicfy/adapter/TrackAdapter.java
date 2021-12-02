@@ -74,5 +74,4 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
     public int getItemCount() {
         return data.size();
     }
-    
 }

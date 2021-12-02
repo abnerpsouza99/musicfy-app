@@ -1,48 +1,50 @@
-package com.musicfy;
+package com.musicfy.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.widget.Button;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.musicfy.R;
 import com.musicfy.presenter.TrackPresenterImpl;
 import com.musicfy.presenter.TrackPresenterInterface;
 
-public class HomeActivity extends AppCompatActivity implements TrackPresenterInterface.view {
-
+public class FavoriteFragment extends Fragment implements TrackPresenterInterface.view{
     TrackPresenterInterface.presenter presenter;
-    private EditText searchInput;
+    private RecyclerView recyclerView;
+
+    public FavoriteFragment() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_favorite, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rvHome);
         presenter = new TrackPresenterImpl(this);
         presenter.searchTrack("nirvana");
 
-        searchInput = (EditText) findViewById(R.id.searchInput);
-        searchInput.addTextChangedListener(textWatcher);
+        return view;
     }
 
     @Override
     public void buildRecycler(RecyclerView.Adapter adapter) {
-        RecyclerView rv = findViewById(R.id.rvHome);
-        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
-        rv.setLayoutManager(llm);
-        rv.setAdapter(adapter);
-    }
-
-    @Override
-    public Context getContext() {
-        return this.getApplicationContext();
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(adapter);
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
