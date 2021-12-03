@@ -62,8 +62,6 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
 
     @Override
     public void searchTrack(String inputText) {
-        // Valores fixos por enquanto para teste
-        String query = "nirvana";
         int limit = 10;
         boolean lyrics = true;
         String type = "track";
@@ -121,6 +119,12 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
         }catch (JSONException exception){
             exception.printStackTrace();
         }
+    }
+
+    public void setAndShowTracks(List<Track> newTracks) {
+        this.tracks = newTracks;
+        RecyclerView.Adapter adapter = new TrackAdapter(tracks, activity.getContext());
+        activity.buildRecycler(adapter);
     }
 
     @Override

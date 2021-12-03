@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment implements TrackPresenterInterface.vi
         searchInput = (EditText) view.findViewById(R.id.searchInput);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvHome);
         presenter = new TrackPresenterImpl(this);
-        presenter.searchTrack("nirvana");
+
         searchInput.addTextChangedListener(textWatcher);
 
         return view;
@@ -62,7 +62,8 @@ public class HomeFragment extends Fragment implements TrackPresenterInterface.vi
 
         @Override
         public void afterTextChanged(Editable s) {
-            presenter.searchTrack(s.toString());
+            if (s.toString().length() > 3)
+                presenter.searchTrack(s.toString());
         }
     };
 }

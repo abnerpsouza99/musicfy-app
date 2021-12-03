@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
@@ -133,6 +134,12 @@ public class Track implements Parcelable {
             return new Track[size];
         }
     };
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        assert obj != null;
+        return obj.getClass() == Track.class && ((Track) obj).id == this.id;
+    }
 
     @Override
     public String toString() {

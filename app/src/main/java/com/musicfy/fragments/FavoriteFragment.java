@@ -1,5 +1,7 @@
 package com.musicfy.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,14 +14,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.musicfy.R;
+import com.musicfy.model.Track;
 import com.musicfy.presenter.TrackPresenterImpl;
 import com.musicfy.presenter.TrackPresenterInterface;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class FavoriteFragment extends Fragment implements TrackPresenterInterface.view{
     TrackPresenterInterface.presenter presenter;
     private RecyclerView recyclerView;
+
+    private ArrayList<Track> favoriteTracks;
 
     public FavoriteFragment() {
     }
@@ -27,6 +39,7 @@ public class FavoriteFragment extends Fragment implements TrackPresenterInterfac
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.favoriteTracks = new ArrayList<>();
     }
 
     @Override
@@ -35,7 +48,25 @@ public class FavoriteFragment extends Fragment implements TrackPresenterInterfac
         View view =  inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvHome);
         presenter = new TrackPresenterImpl(this);
-        presenter.searchTrack("nirvana");
+
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("favoritePreferences",Context.MODE_PRIVATE);
+        Set<String> defaultStringSet = new HashSet<String>();
+        Set<String> favorites = sharedPref.getStringSet("favorites", defaultStringSet);
+
+        Gson g = new Gson();
+
+        for (String fav : favorites) {
+            Track fTrack = g.fromJson(fav, Track.class);
+            favoriteTracks.add(fTrack);
+        }
+
+        if (! favoriteTracks.isEmpty()) {
+            presenter.setAndShowTracks(favoriteTracks);
+        }
+        else {
+            TextView title = view.findViewById(R.id.favoriteTitle);
+            title.setText("Nenhum favorito salvo.");
+        }
 
         return view;
     }
@@ -45,6 +76,7 @@ public class FavoriteFragment extends Fragment implements TrackPresenterInterfac
         LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
+
     }
 
     private TextWatcher textWatcher = new TextWatcher() {

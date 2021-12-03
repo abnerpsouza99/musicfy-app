@@ -18,10 +18,13 @@
             app:toolbarId="@+id/toolbar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_width="match_parent">
+                android:background="@color/dark"
+                android:onClick="goBack">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -31,11 +34,11 @@
                     app:srcCompat="@drawable/icon_back" />
 
                 <TextView
-                    android:layout_width="111dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/imageView"
                     android:layout_marginLeft="16dp"
+                    android:layout_toEndOf="@+id/imageView"
                     android:text="Voltar"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#FFFFFF"
@@ -61,6 +64,7 @@
             tools:context=".InnerActivity">
 
             <ScrollView
+                android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -70,44 +74,61 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="24dp"
                     android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/musicTitle"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="26dp"
-                        android:text="NOME MÚSICA"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textColor="#FFFFFF"
-                        android:textSize="32sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:paddingTop="24dp">
 
                         <TextView
-                            android:id="@+id/artistNameTrack"
+                            android:id="@+id/musicTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="Nome do artista"
+                            android:text="NOME MÚSICA"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                            android:textColor="@color/secondary"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
+                            android:textColor="#FFFFFF"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_default="wrap"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/musicTitle" />
-                    </LinearLayout>
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_default="spread" />
+
+                        <ImageView
+                            android:id="@+id/favoriteButton"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_default="wrap"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_default="spread"
+                            app:srcCompat="@drawable/icon_star_border" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/artistNameTrack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Nome do artista"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/secondary"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/musicTitle" />
 
                     <TextView
                         android:id="@+id/lyric"
@@ -119,6 +140,7 @@
                         android:textAlignment="textStart"
                         app:layout_constraintTop_toBottomOf="@+id/artistNameTrack"
                         app:layout_constraintVertical_bias="0.0" />
+
                 </LinearLayout>
 
             </ScrollView>
