@@ -19,7 +19,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lyric implements Parcelable {
-
     private String artist;
     private int idArtist;
     private int idTrack;
@@ -37,6 +36,137 @@ public class Lyric implements Parcelable {
     private String copyrightNotice;
     private String copyrightText;
 
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public int getIdArtist() {
+        return idArtist;
+    }
+
+    public void setIdArtist(int idArtist) {
+        this.idArtist = idArtist;
+    }
+
+    public int getIdTrack() {
+        return idTrack;
+    }
+
+    public void setIdTrack(int idTrack) {
+        this.idTrack = idTrack;
+    }
+
+    public int getIdAlbum() {
+        return idAlbum;
+    }
+
+    public void setIdAlbum(int idAlbum) {
+        this.idAlbum = idAlbum;
+    }
+
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
+    }
+
+    public String getLyrics() {
+        return lyrics;
+    }
+
+    public void setLyrics(String lyrics) {
+        this.lyrics = lyrics;
+    }
+
+    public String getApiArtist() {
+        return apiArtist;
+    }
+
+    public void setApiArtist(String apiArtist) {
+        this.apiArtist = apiArtist;
+    }
+
+    public String getApiAlbums() {
+        return apiAlbums;
+    }
+
+    public void setApiAlbums(String apiAlbums) {
+        this.apiAlbums = apiAlbums;
+    }
+
+    public String getApiAlbum() {
+        return apiAlbum;
+    }
+
+    public void setApiAlbum(String apiAlbum) {
+        this.apiAlbum = apiAlbum;
+    }
+
+    public String getApiTracks() {
+        return apiTracks;
+    }
+
+    public void setApiTracks(String apiTracks) {
+        this.apiTracks = apiTracks;
+    }
+
+    public String getApiTrack() {
+        return apiTrack;
+    }
+
+    public void setApiTrack(String apiTrack) {
+        this.apiTrack = apiTrack;
+    }
+
+    public String getApiLyrics() {
+        return apiLyrics;
+    }
+
+    public void setApiLyrics(String apiLyrics) {
+        this.apiLyrics = apiLyrics;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getCopyrightLabel() {
+        return copyrightLabel;
+    }
+
+    public void setCopyrightLabel(String copyrightLabel) {
+        this.copyrightLabel = copyrightLabel;
+    }
+
+    public String getCopyrightNotice() {
+        return copyrightNotice;
+    }
+
+    public void setCopyrightNotice(String copyrightNotice) {
+        this.copyrightNotice = copyrightNotice;
+    }
+
+    public String getCopyrightText() {
+        return copyrightText;
+    }
+
+    public void setCopyrightText(String copyrightText) {
+        this.copyrightText = copyrightText;
+    }
+
+    public static Creator<Lyric> getCREATOR() {
+        return CREATOR;
+    }
     protected Lyric(Parcel in) {
         artist = in.readString();
         idArtist = in.readInt();

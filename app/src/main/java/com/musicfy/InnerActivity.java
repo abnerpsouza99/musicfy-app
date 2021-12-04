@@ -8,27 +8,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.musicfy.model.Track;
+import com.musicfy.presenter.LyricPresenterImpl;
+import com.musicfy.presenter.LyricPresenterInterface;
+import com.musicfy.presenter.TrackPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class InnerActivity extends AppCompatActivity {
+public class InnerActivity extends AppCompatActivity implements LyricPresenterInterface.view{
+    LyricPresenterInterface.presenter presenter;
     private Track track;
     private boolean isFavorite;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter = new LyricPresenterImpl(this);
 
         this.isFavorite = false;
 
         setContentView(R.layout.activity_inner);
 
         this.track = getIntent().getParcelableExtra("track");
+
+        presenter.getLyricsFromTrack(track.getIdArtist(), track.getIdAlbum(), track.getId());
 
         TextView textView = findViewById(R.id.musicTitle);
         textView.setText(this.track.getTrackName());
@@ -120,5 +130,14 @@ public class InnerActivity extends AppCompatActivity {
 
     public void goBack(View view) {
         finish();
+    }
+
+    @Override
+    public void buildRecycler(RecyclerView.Adapter adapter) {
+    }
+
+    @Override
+    public Context getContext() {
+        return this.getApplicationContext();
     }
 }

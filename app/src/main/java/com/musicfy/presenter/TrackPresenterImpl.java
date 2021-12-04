@@ -1,5 +1,7 @@
 package com.musicfy.presenter;
 
+import android.widget.Adapter;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -114,6 +116,7 @@ public class TrackPresenterImpl implements TrackPresenterInterface.presenter, Re
                 Track track = new Track(result.getJSONObject(i));
                 tracks.add(track);
             }
+
             RecyclerView.Adapter adapter = new TrackAdapter(tracks, activity.getContext());
             activity.buildRecycler(adapter);
         }catch (JSONException exception){

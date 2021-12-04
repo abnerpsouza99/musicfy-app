@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
@@ -20,6 +19,8 @@ import lombok.NoArgsConstructor;
 public class Track implements Parcelable {
 
     private int id;
+    private int idAlbum;
+    private int idArtist;
     private String trackName;
     private String artist;
     private String album;
@@ -44,6 +45,22 @@ public class Track implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdAlbum() {
+        return idAlbum;
+    }
+
+    public void setIdAlbum(int idAlbum) {
+        this.idAlbum = idAlbum;
+    }
+
+    public int getIdArtist() {
+        return idArtist;
+    }
+
+    public void setIdArtist(int idArtist) {
+        this.idArtist = idArtist;
     }
 
     public String getTrackName() {
@@ -112,6 +129,8 @@ public class Track implements Parcelable {
 
     protected Track(Parcel in) {
         id = in.readInt();
+        idAlbum = in.readInt();
+        idArtist = in.readInt();
         trackName = in.readString();
         artist = in.readString();
         album = in.readString();
@@ -136,15 +155,11 @@ public class Track implements Parcelable {
     };
 
     @Override
-    public boolean equals(@Nullable Object obj) {
-        assert obj != null;
-        return obj.getClass() == Track.class && ((Track) obj).id == this.id;
-    }
-
-    @Override
     public String toString() {
         return "Track{" +
                 "id=" + id +
+                ", idAlbum='" + idAlbum + '\'' +
+                ", idArtist='" + idArtist + '\'' +
                 ", trackName='" + trackName + '\'' +
                 ", artist='" + artist + '\'' +
                 ", album='" + album + '\'' +
@@ -161,6 +176,8 @@ public class Track implements Parcelable {
         super();
         try{
             this.id = result.getInt("id_track");
+            this.idAlbum = result.getInt("id_album");
+            this.idArtist = result.getInt("id_artist");
             this.trackName = result.has("track") ? result.getString("track") : "";
             this.artist = result.has("artist") ? result.getString("artist") : "";
             this.album = result.has("album") ? result.getString("album") : "";
@@ -170,6 +187,7 @@ public class Track implements Parcelable {
             this.apiTrack = result.has("api_track") ? result.getString("api_track") : "";
             this.apiLyrics = result.has("api_lyrics") ? result.getString("api_lyrics") : "";
             this.cover = result.has("cover") ? result.getString("cover") : "";
+
         }catch (JSONException exception){
             exception.printStackTrace();
         }
@@ -177,13 +195,15 @@ public class Track implements Parcelable {
 
     @Override
     public int describeContents() {
-       return 0;
+        return 0;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
+        dest.writeInt(this.idAlbum);
+        dest.writeInt(this.idArtist);
         dest.writeString(this.trackName);
         dest.writeString(this.artist);
         dest.writeString(this.album);
