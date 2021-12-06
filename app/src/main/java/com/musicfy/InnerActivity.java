@@ -8,10 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.musicfy.databinding.ActivityInnerBinding;
+import com.musicfy.model.Lyric;
 import com.musicfy.model.Track;
 import com.musicfy.presenter.LyricPresenterImpl;
 import com.musicfy.presenter.LyricPresenterInterface;
@@ -25,6 +28,7 @@ public class InnerActivity extends AppCompatActivity implements LyricPresenterIn
     LyricPresenterInterface.presenter presenter;
     private Track track;
     private boolean isFavorite;
+    ActivityInnerBinding binding;
 
 
     @Override
@@ -33,18 +37,12 @@ public class InnerActivity extends AppCompatActivity implements LyricPresenterIn
         presenter = new LyricPresenterImpl(this);
 
         this.isFavorite = false;
-
-        setContentView(R.layout.activity_inner);
-
         this.track = getIntent().getParcelableExtra("track");
-
         presenter.getLyricsFromTrack(track.getIdArtist(), track.getIdAlbum(), track.getId());
 
-        TextView textView = findViewById(R.id.musicTitle);
-        textView.setText(this.track.getTrackName());
-
-        textView = findViewById(R.id.artistNameTrack);
-        textView.setText(this.track.getArtist());
+        // DataBinding
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_inner);
+        binding.setTrack(this.track);
 
         SharedPreferences sharedPref = getSharedPreferences("favoritePreferences",Context.MODE_PRIVATE);
         Set<String> defaultStringSet = new HashSet<String>();
@@ -133,11 +131,12 @@ public class InnerActivity extends AppCompatActivity implements LyricPresenterIn
     }
 
     @Override
-    public void buildRecycler(RecyclerView.Adapter adapter) {
+    public Context getContext() {
+        return this.getApplicationContext();
     }
 
     @Override
-    public Context getContext() {
-        return this.getApplicationContext();
+    public void setLyric(Lyric lyric) {
+        binding.setLyric(lyric);
     }
 }
