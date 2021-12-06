@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.musicfy.R;
 import com.musicfy.presenter.TrackPresenterImpl;
@@ -21,6 +22,7 @@ public class HomeFragment extends Fragment implements TrackPresenterInterface.vi
     TrackPresenterInterface.presenter presenter;
     private EditText searchInput;
     private  RecyclerView recyclerView;
+    private View view;
 
     public HomeFragment() {
     }
@@ -33,13 +35,15 @@ public class HomeFragment extends Fragment implements TrackPresenterInterface.vi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        this.view =  inflater.inflate(R.layout.fragment_home, container, false);
 
         searchInput = (EditText) view.findViewById(R.id.searchInput);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvHome);
         presenter = new TrackPresenterImpl(this);
 
         searchInput.addTextChangedListener(textWatcher);
+
+
 
         return view;
     }
@@ -49,6 +53,12 @@ public class HomeFragment extends Fragment implements TrackPresenterInterface.vi
         LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
+        TextView textView = view.findViewById(R.id.textInformation);
+        if(adapter.getItemCount() <= 0){
+            textView.setText("Nenhuma música encontrada.");
+        } else{
+            textView.setText("");
+        }
     }
 
     private TextWatcher textWatcher = new TextWatcher() {

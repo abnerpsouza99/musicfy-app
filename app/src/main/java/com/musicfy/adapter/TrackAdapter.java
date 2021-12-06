@@ -57,7 +57,6 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         tv.setText(track.getArtist());
         ImageView imageView = holder.view.findViewById(R.id.trackImgView);
         Picasso.get().load(track.getCover()).into(imageView);
-
         CardView cv = holder.view.findViewById(R.id.cardView);
         cv.setTag(track);
         cv.setOnClickListener(new View.OnClickListener() {
