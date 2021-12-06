@@ -1,18 +1,11 @@
 package com.musicfy.presenter;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.musicfy.R;
 import com.musicfy.model.Lyric;
 import com.musicfy.model.utils.Utils;
 
@@ -21,6 +14,7 @@ import org.json.JSONObject;
 
 public class LyricPresenterImpl implements LyricPresenterInterface.presenter, Response.ErrorListener{
     private Lyric lyric;
+    private String trackLyrics;
     private LyricPresenterInterface.view activity;
     private Utils utils = new Utils();
 
@@ -47,12 +41,12 @@ public class LyricPresenterImpl implements LyricPresenterInterface.presenter, Re
 
     public void onResponseGetLyricsFromTrack(JSONObject response){
         try{
+            boolean success = response.getBoolean("success");
             JSONObject result = response.getJSONObject("result");
-            lyric = new Lyric(result);
-            System.out.println(lyric);
-
-            //TODO -- preencher lyric na página interna
-
+            if (success){
+                lyric = new Lyric(result);
+                activity.setLyric(lyric);
+            }
         }catch (JSONException exception){
             exception.printStackTrace();
         }
