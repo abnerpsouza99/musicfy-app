@@ -1,153 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="track"
+            type="com.musicfy.model.Track" />
+
+        <variable
+            name="lyric"
+            type="com.musicfy.model.Lyric" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
 
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:toolbarId="@+id/toolbar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/dark"
-                android:onClick="goBack">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/icon_back" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_toEndOf="@+id/imageView"
-                    android:text="Voltar"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background"
-            tools:context=".InnerActivity">
-
-            <ScrollView
-                android:id="@+id/scrollView2"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:toolbarId="@+id/toolbar"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary">
 
-                <LinearLayout
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:orientation="vertical">
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/dark"
+                    android:onClick="goBack">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="24dp">
-
-                        <TextView
-                            android:id="@+id/musicTitle"
-                            android:layout_width="328dp"
-                            android:layout_height="wrap_content"
-                            android:text="NOME MÚSICA"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                            android:textColor="#FFFFFF"
-                            android:textSize="32sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_default="wrap"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintWidth_default="spread" />
-
-                        <ImageView
-                            android:id="@+id/favoriteButton"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_centerVertical="true"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHeight_default="wrap"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/musicTitle"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintWidth_default="spread"
-                            app:srcCompat="@drawable/icon_star_border" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/icon_back" />
 
                     <TextView
-                        android:id="@+id/artistNameTrack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Nome do artista"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:text="Voltar"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textColor="@color/secondary"
-                        android:textSize="14sp"
-                        android:textStyle="normal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/musicTitle" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/lyric"
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background"
+                tools:context=".InnerActivity">
+
+                <ScrollView
+                    android:id="@+id/scrollView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="32dp"
-                        android:layout_marginBottom="24dp"
-                        android:text="Nobody pray for me It's been that day for me Waaaaay (yeah, yeah!) Ayy, I remember syrup sandwiches and crime allowances Finesse a nigga with some counterfeits, but now I'm countin' this Parmesan where my accountant lives; in fact, I'm downin' this D'USSÉ with my boo bae tastes like Kool-Aid for the analysts Girl, I can buy yo' ass the world with my paystub Ooh, that pussy good, won't you sit it on my taste buds? I get way too petty once you let me do the extras Pull up on your block, then break it down: we playin' Tetris A.M. to the P.M., P.M. to the A.M., funk Piss out your per diem, you just gotta hate 'em, funk If I quit your BM, I still ride Mercedes, funk If I quit this season, I still be the greatest, funk My left stroke just went viral Right stroke put lil' baby in a spiral Soprano C, we like to keep it on a high note It's levels to it, you and I know Bitch, be humble (hol' up, bitch) Sit down (hol' up, lil', hol' up, lil' bitch) Be humble (hol' up, bitch) Sit down (hol' up, sit down, lil', sit down, lil' bitch) Be humble (hol' up, hol' up) Bitch, sit down (hol' up, hol' up, lil' bitch) Be humble (lil' bitch, hol' up, bitch) Sit down (hol' up, hol' up, hol' up, hol' up) Be humble (hol' up, hol' up) Sit down (hol' up, hol' up, lil', hol' up, lil' bitch) Be humble (hol' up, bitch) Sit down (hol' up, sit down, lil', sit down, lil' bitch) Be humble (hol' up, hol' up) Bitch, sit down (hol' up, hol' up, lil' bitch) Be humble (lil' bitch, hol' up, bitch) Sit down (hol' up, hol' up, hol' up, hol' up) Who dat nigga thinkin' that he frontin' on Man-Man? Get the fuck off my stage, I'm the Sandman (Sandman) Get the fuck off my dick, that ain't right I make a play fucking up your whole life I'm so fuckin' sick and tired of the Photoshop Show me somethin' natural like afro on Richard Pryor Show me somethin' natural like ass with some stretch marks Still will take you down right on your mama's couch in Polo socks Ayy, this shit way too crazy, ayy, you do not amaze me, ayy I blew cool from AC, ayy, Obama just paged me, ayy I don't fabricate it, ayy, most of y'all be fakin', ayy I stay modest 'bout it, ayy, she elaborate it, ayy This that Grey Poupon, that Evian, that TED Talk, ayy Watch my soul speak, you let the meds talk, ayy If I kill a nigga, it won't be the alcohol, ayy I'm the realest nigga after all Bitch, be humble (hol' up, bitch) Sit down (hol' up, lil', hol' up, lil' bitch) Be humble (hol' up, bitch) Sit down (hol' up, sit down, lil', sit down, lil' bitch) Be humble (hol' up, hol' up) Bitch, sit down (hol' up, hol' up, lil' bitch) Be humble (lil' bitch, hol' up, bitch) Sit down (hol' up, hol' up, hol' up, hol' up) Be humble (hol' up, hol' up) Sit down (hol' up, hol' up, lil', hol' up, lil' bitch) Be humble (hol' up, bitch) Sit down (hol' up, sit down, lil', sit down, lil' bitch) Be humble (hol' up, hol' up, hol' up, hol' up) Bitch, sit down (hol' up, hol' up, lil' bitch) Be humble (lil' bitch, hol' up, bitch) Sit down (hol' up, hol' up, hol' up, hol' up) Fonte: Musixmatch Compositores: Asheton Hogan / K. Duckworth / M. Williams Ii Letra de HUMBLE. © Hard Working Black Folks Inc., Top Dawg Music, Sounds From Eardrummers Llc, Eardrummers Entertainment Llc, Tde Music Llc "
-                        android:textAlignment="textStart"
-                        app:layout_constraintTop_toBottomOf="@+id/artistNameTrack"
-                        app:layout_constraintVertical_bias="0.0" />
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="24dp">
 
-            </ScrollView>
+                            <TextView
+                                android:id="@+id/musicTitle"
+                                android:layout_width="328dp"
+                                android:layout_height="wrap_content"
+                                android:text="@{track.trackName}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                android:textColor="#FFFFFF"
+                                android:textSize="32sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHeight_default="wrap"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_default="spread" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                            <ImageView
+                                android:id="@+id/favoriteButton"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHeight_default="wrap"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toEndOf="@+id/musicTitle"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_default="spread"
+                                app:srcCompat="@drawable/icon_star_border" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
+                        <TextView
+                            android:id="@+id/artistNameTrack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@{track.artist}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textColor="@color/secondary"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/musicTitle" />
+
+                        <TextView
+                            android:id="@+id/lyric"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="24dp"
+                            android:text="@{lyric.lyrics}"
+                            android:textAlignment="textStart"
+                            app:layout_constraintTop_toBottomOf="@+id/artistNameTrack"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

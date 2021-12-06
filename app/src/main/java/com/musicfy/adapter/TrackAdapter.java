@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.musicfy.InnerActivity;
 import com.musicfy.R;
+import com.musicfy.databinding.TrackLayoutBinding;
 import com.musicfy.model.Track;
 import com.squareup.picasso.Picasso;
 
@@ -25,11 +27,11 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public View view;
+        private TrackLayoutBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.view = itemView;
+        public ViewHolder(@NonNull TrackLayoutBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 
@@ -42,22 +44,19 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ViewGroup viewGroup;
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.track_layout, parent, false);
-        return new ViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        TrackLayoutBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.track_layout, parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Track track = data.get(position);
-        TextView tv = holder.view.findViewById(R.id.tvTrackName);
-        System.out.println(track.toString());
-        tv.setText(track.getTrackName());
-        tv = holder.view.findViewById(R.id.tvArtistName);
-        tv.setText(track.getArtist());
-        ImageView imageView = holder.view.findViewById(R.id.trackImgView);
+        holder.binding.setTrack(track);
+        ImageView imageView = holder.itemView.findViewById(R.id.trackImgView);
         Picasso.get().load(track.getCover()).into(imageView);
-        CardView cv = holder.view.findViewById(R.id.cardView);
+
+        CardView cv = holder.itemView.findViewById(R.id.cardView);
         cv.setTag(track);
         cv.setOnClickListener(new View.OnClickListener() {
             @Override

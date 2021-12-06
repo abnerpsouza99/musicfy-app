@@ -8,8 +8,8 @@ import com.musicfy.model.Lyric;
 
 public interface LyricPresenterInterface {
     interface view{
-        void buildRecycler(RecyclerView.Adapter adapter);
         Context getContext();
+        void setLyric(Lyric lyric);
     }
     interface presenter{
         void getLyricsFromTrack(int idArtist, int idAlbum, int idTrack);
