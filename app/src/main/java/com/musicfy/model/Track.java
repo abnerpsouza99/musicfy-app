@@ -214,4 +214,10 @@ public class Track implements Parcelable {
         dest.writeString(this.apiLyrics);
         dest.writeString(this.cover);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        assert obj != null;
+        return obj.getClass() == Track.class && ((Track) obj).id == this.id;
+    }
 }
